@@ -5,10 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
-import { ProfileAvatar } from "@/utils/globalVariables";
-
 const Navbar = () => {
-  const isUserLoggedIn = true;
+  const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
@@ -20,7 +18,7 @@ const Navbar = () => {
       setProviders(resp);
     };
 
-    getProvidersFunc;
+    getProvidersFunc();
   }, []);
 
   return (
@@ -33,19 +31,26 @@ const Navbar = () => {
 
       {/* Desktop Devices */}
       <div className="hidden sm:block">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex gap-3">
             <Link href="/create-prompt" className="black_btn">
               Create Prompt
             </Link>
 
-            <button className="outline_btn">Sign Out</button>
+            <button
+              className="outline_btn"
+              onClick={() => {
+                signOut();
+              }}
+            >
+              Sign Out
+            </button>
 
             <Link href="/profile">
               <Image
-                src={ProfileAvatar}
-                width={40}
-                height={40}
+                src={session?.user.image}
+                width={35}
+                height={35}
                 alt="profile"
                 className="rounded-full"
               />
@@ -70,10 +75,10 @@ const Navbar = () => {
 
       {/* Mobile Devices */}
       <div className="flex relative sm:hidden">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex">
             <Image
-              src={ProfileAvatar}
+              src={session?.user.image}
               alt="profile"
               width={35}
               height={35}
