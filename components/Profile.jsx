@@ -1,12 +1,14 @@
+"use client";
+
 import PromptCard from "./PromptCard";
 
 const Profile = (props) => {
-  const { name, desc, posts, handleEdit, hamdleDelete } = props;
+  const { name, desc, posts, handleEdit, handleDelete } = props;
 
   return (
     <section className="w-full">
-      <h1 className="title_header text-left">
-        {name} <span className="text-orange-600">Profile</span>
+      <h1 className="title_header blue_gradient text-left">
+        {name} <span>Profile</span>
       </h1>
       <p className="desc text-left">{desc}</p>
 
@@ -16,7 +18,7 @@ const Profile = (props) => {
             key={post._id}
             post={post}
             handleEdit={() => handleEdit && handleEdit(post)}
-            hamdleDelete={() => hamdleDelete && hamdleDelete(post)}
+            handleDelete={() => handleDelete && handleDelete(post)}
           />
         ))}
       </div>
