@@ -91,7 +91,7 @@ const Navbar = () => {
             {toggleDropdown && (
               <div className="flex flex-col bg-white rounded-lg absolute right-0 top-full w-full p-3 min-w-[210px] shadow-lg">
                 <Link
-                  href="#"
+                  href="/profile"
                   className="text-sm font-medium  text-center py-2 hover:bg-black hover:text-white"
                   onClick={() => setToggleDropdown(false)}
                 >
@@ -99,7 +99,7 @@ const Navbar = () => {
                 </Link>
 
                 <Link
-                  href="#"
+                  href="/create-prompt"
                   className="text-sm font-medium text-center py-2  hover:bg-black hover:text-white"
                   onClick={() => setToggleDropdown(false)}
                 >
